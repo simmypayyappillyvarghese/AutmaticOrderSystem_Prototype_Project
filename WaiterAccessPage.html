@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Waiter Access Page|AOS</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--
+#Author:Simmy Payyappilly Varghese
+#ID:86448
+#Created Date:12/22/2015
+-->
+<link href="style_AOS.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+/* <![CDATA[ */
+var formData = location.search;
+formData = formData.substring(1, formData.length);
+while (formData.indexOf("+") != -1) 
+{  formData = formData.replace("+", " ");
+   }
+ formData = unescape(formData);
+var formArray = formData.split("&");
+var nameUser=formArray[0].split("=");
+document.write("<p style='text-align:right;color:purple;font-weight:bold;font-size:14px'>Welcome,"+nameUser[1]+"&nbsp;&nbsp;&nbsp;");
+document.writeln("<a href='TabletUI.html' style='color:purple;margin:10px;'>Logout</a>"); 
+document.write("</p>");
+flag=0;  //If same table is activated the window should remain same.
+var t;
+var tableValue="Table 1";
+//_blank creates new window
+var num=1;
+var page=new Array(12);
+var time=new Array(12);
+function activate(tableValue,num){
+flag++;
+page[num]=window.open('TableActivatedPage.html','win'+num,'toolbar=no,menubar=no,left=400,location=center,scrollbars=no,resizable=no,width=400,height=400',false);
+page[num].document.write('<body style=background:url(https://s-media-cache-ak0.pinimg.com/736x/b5/39/53/b53953f96eb5ec55f66f57349768d93f.jpg);background-repeat:no-repeat;background-size:200%;background-position:center;>');
+page[num].document.write('<br/><br/><p style=margin:30px;font-weight:bold;font-style:italic;font-size:26px;text-align:right;><br/><br/>'+tableValue+' is Activated !!<br/><br/></p>');
+page[num].document.write('<p id="clock" style="font-weight:bold;text-align:center;font-size:18"></p>');
+page[num].focus();
+p=window.open('CustomerUI.html'); 
+timer(num);
+}
+function deactivate(tableValue,num){
+flag++;
+page[num]=window.open('ActivatedPage.html','_blank','toolbar=no,menubar=no,left=400,location=center,scrollbars=no,resizable=no,width=400,height=400',false);
+page[num].document.write('<body style=background:url(https://s-media-cache-ak0.pinimg.com/736x/b5/39/53/b53953f96eb5ec55f66f57349768d93f.jpg);background-repeat:no-repeat;background-size:200%;background-position:center;>');
+page[num].document.write('<br/><br/><p style=margin:30px;font-weight:bold;font-style:italic;font-size:26px;text-align:right;><br/><br/>'+tableValue+' is Deactivated !!<br/><br/></p>');
+page[num].focus();
+//Clear TimeOUt for double click;
+}
+
+function timer(num) {   
+    time[num] = setTimeout(add,1000);
+} 
+var seconds = 0, minutes = 0, hours = 0;
+
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+   page[num].document.getElementById('clock').innerHTML=(hours ? (hours > 9 ? hours : "0" + hours) : "00")+ ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+   
+    timer(num);
+}
+
+ /* ]]> */
+</script>
+</head>
+<body id="waiterAccessPageBody">
+<header><br/></header><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<table><tr>
+<td><p style="font-weight:bold;color:purple">&nbsp;Select The Table :</p></td></tr><tr>
+<td>&nbsp;&nbsp;<select id="tableList" onchange="tableValue=options[this.selectedIndex].value;++num;flag=0;clearTimeout(time);"><option value="Table1">Table 1</option>
+<option value="Table 2">Table 2(for 2 people)</option>
+<option value="Table 3">Table 3</option>
+<option value="Table 4">Table 4</option>
+<option value="Table 5">Table 5</option>
+<option value="Table 6">Table 6</option>
+<option value="Table 7">Table 7(for 2 people)</option>
+<option value="Table 8">Table 8</option>
+<option value="Table 9">Table 9</option>
+<option value="Table 10">Table 10</option>
+<option value="Table 11">Table 11(for 2 people)</option>
+<option value="Table 12">Table 12(for 2 people)</option>
+</select></td></tr></table>
+<br/><br/>
+<button type="button" class="btn btn-primary" onclick="if(flag>0){page[num].close();}activate(tableValue,num);">Activate The Table</button>
+<button type="button" class="btn btn-primary"  onclick="if(flag>0){page[num].close()}deactivate(tableValue,num);">Deactivate the Table</button>
+<button type="button" class="btn btn-primary"  onclick="window.open('CustomerUI.html');window.alert('Order is Accepted');">Accept the Order</button>
+<button type="button" class="btn btn-primary"  onclick="window.open('CustomerUI.html');window.alert('Order is Delivered');">Deliver the Order</button>
+<button type="button" class="btn btn-primary" onclick="progressWin=window.open('progressWin.html','toolbar=no,menubar=no,left=400,location=center,scrollbars=no,resizable=no,width=200,height=200',false);">Process the Payment</button>
+<button type="button" class="btn btn-primary" onclick="window.alert('Order Notification sent to the Chef');window.open('DisplayUI.html');">Notify the Chef on the order </button>
+<button type="button" class="btn btn-primary" onclick="window.alert('Order Notification sent to the Customer');window.open('CustomerUI.html');">Notify the Customer on the order </button>
+<p title="orderAlert"></p>
+</body>
+</html>
+
+
+

@@ -1,0 +1,107 @@
+/*Tablet UI Page*/
+@font-face{
+	font-family:DEVROYE_;
+    src:url('DEVROYE_.ttf');
+}
+h1{
+color:purple;
+font-size:40px;
+font-style:italic;
+}
+h2{
+font-size:30px;
+font-style:normal;
+text-align:center;
+}
+#TabletUIPageBody{
+background:url(http://www.thecliffhousehotel.com/assets/website/content/images/1400x910_mm851_nv_chh-0512_final.jpg)   no-repeat center;
+background-color:lavender;
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+color:purple;
+}
+#TabletUIPageSec{
+width:40%;
+padding:30px;
+font-weight:bold;
+margin:80px 10px 0px 1px;
+}
+#TabletUIPageBody a{
+margin:0px 15px 10px 50px;
+font-size:12px;
+color:purple;
+}
+
+/*Waiter Acess Page*/
+#waiterAccessPageBody{
+background-color:lavender;
+background:url(http://www.hotelcapolagala.com/uploads/gallery/images/ja6a9029_30c58b84940379b82c1686a18f278785.jpg) no-repeat center;
+background-size:120%;
+}
+
+/*Reset Page*/
+#ResetPageBody{
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+background-color:lavender;
+color:purple
+}
+#ResetPageBody form{
+margin:3% 20% 10% 40%;
+}
+/*Customer UI Page*/
+#customerUIBody{
+background:url(https://s-media-cache-ak0.pinimg.com/originals/ee/27/74/ee2774c3e83671e92212fa9d9ee05b6f.jpg) no-repeat center;
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+}
+#menuBody{
+background:url('BEETS.jpg') no-repeat top ;
+background-size:34%;
+background-color:#304e42;
+}
+#createOrderBody h1{
+text-align:center;
+}
+#createOrderBody{
+background:url('http://www.drewhadley.com/data/photos/110_1food_14.jpg') no-repeat top;
+background-size:50%;
+background-color:white;
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+color:green;
+}
+
+#menuTable{
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+font-size:14px;
+margin:1% 0% 5% 0%;
+}
+#orderListBody{
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+color:green;
+}
+#CheckOutPageBody
+{
+background-color:lavender;
+color:indigo;
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+}
+#progressId {
+    background-color: #f3f3f3;
+    border: 0;
+    height: 18px;
+	border-radius:9px;
+    -webkit-border-radius:9px;
+	-moz-border-radius:9px;
+	margin:1% 40% 20% 40%;
+}
+#displayBody{
+background-color:lavender;
+background:url('http://a9.vietbao.vn/images/vn999/186/2015/05/20150528-6-loai-thuc-pham-lam-mat-co-the-khoi-nang-he-1.jpg') no-repeat top;
+font-family:DEVROYE_,Times New Roman,Arial, Helvetica,sans-serif;
+background-size:100%;
+}
+#buttons{
+margin:5% 5% 20% 70%;
+}
+#displayBody h2,h4{
+color:forestgreen;
+text-align:center;
+}

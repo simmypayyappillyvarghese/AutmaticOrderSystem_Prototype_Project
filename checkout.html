@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CheckOut Page|AOS</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<link href="style_AOS.css" rel="stylesheet" type="text/css"/>
+<!--
+#Author:Simmy Payyappilly Varghese
+#ID:86448
+#Created Date:12/26/2015
+-->
+<script>
+/* <![CDATA[ */
+function verify(){
+if(document.getElementById('name').value==''||document.getElementById('email').value==''||document.getElementById('address').value==''||document.getElementById('city').value==''||document.getElementById('zip').value==''||document.getElementById('country').value=='')
+{
+window.alert('Fill in the details to proceed');
+}
+else if(document.getElementById('payment_Option0').checked){
+window.alert('Thanks !! You will be assisted by waiter for cash payment');
+self.close();
+}
+else if (document.getElementById('cardNo').value==''||document.getElementById('cvc').value==''||document.getElementById('mon').value==''||document.getElementById('year').value==''){
+window.alert('Plaese Fill in you  Payment Details !!');
+}
+else{
+
+window.alert('Your Payment is Submitted !!');
+self.close();
+}
+
+}
+ /* ]]> */
+</script>
+</head>
+<body id="CheckOutPageBody">
+<h2>Payment Page</h2>
+<p>Please fill in your details</p>
+<form action="recipt.html" method="post" id="checkout-order-form">
+<fieldset id="fieldset-billing" style="margin:2%">
+<legend>Billing:</legend>
+
+	<label for="name">Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	<input type="text" id="name" /><br/>
+
+	<label for="email">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	<input type="text"  id="email" /><br/>
+
+	<label for="city">City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+	<input type="text"  id="city"/><br/>
+
+	<label for="address">Address:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<input type="text" id="address"/><br/>
+
+	<label for="zip">ZIP Code:&nbsp;&nbsp;&nbsp;</label>
+	<input type="text"  id="zip" /><br/>
+
+	<label for="country">Country:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		<select  id="country" >
+			<option value="">Select</option>
+			<option value="US">USA</option>
+			<option value="IT">Italy</option>
+		</select>
+</fieldset><br/>
+<fieldset style="margin:2%">
+<legend>Payment Method:</legend>
+<input  id="payment_Option0" name="pay" type="radio" value="Cash" onclick="document.getElementById('payCard').style.display='none';"/>Cash
+<input id="payment_Option" name="pay" type="radio" value="Bankcard" onclick="document.getElementById('payCard').style.display='block';"/>Bankcard
+</fieldset><br/>
+<div id="payCard" style="display:none;">
+<a href="http://www.merchantequip.com/information-center/credit-card-logos/"><img src="https://www.merchantequip.com/images/logos/credit-cards.gif" width="249" height="44" alt="Merchant Equipment Store Credit Card Logos" /></a><br/>
+<label>Card Number:
+      <input type="text" id="cardNo" size="20" />
+</label><br/>
+    <label>CVC:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input type="text" size="4" id="cvc"/>
+    </label><br/>
+    <label>Expiration (MM/YYYY):
+      <input type="text" size="2" id="mon"/>
+    </label> /
+    <input type="text" size="4" id="year"/>
+ </div>
+ <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="button" id="submit-order" class="btn btn-primary" value="&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;" onclick="verify();"/></p>
+</form>
+</body>
+</html>

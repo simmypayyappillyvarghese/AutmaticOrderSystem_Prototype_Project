@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OrderList</title>
+<link href="style_AOS.css" rel="stylesheet" type="text/css">
+<!--
+#Author:Simmy Payyappilly Varghese
+#ID:86448
+#Created Date:12/22/2015
+-->
+<script type="text/javascript">
+/* <![CDATA[ */
+var formData = location.search;
+formData = formData.substring(1, formData.length);
+while (formData.indexOf("+") != -1) 
+{  formData = formData.replace("+", " ");
+   }
+ formData = unescape(formData);
+var formArray = formData.split("&");
+var nameUser=formArray[0].split("=");
+ /* ]]> */
+</script>
+</head>
+<body id="orderListBody">
+<table><tr><td>Order List</td><td>&nbsp;Item Name:&nbsp;</td><td>&nbsp;Price&nbsp;</td><td>&nbsp;Qt:&nbsp;</td></tr></table>
+<table id="orderedProductsTblBody">
+<tr><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>
+</table>
+<table><tr><td>Total Amount:</td><td>&nbsp;&nbsp;</td><td id="cart_total">0</td></tr></table>
+</body>
+</html>

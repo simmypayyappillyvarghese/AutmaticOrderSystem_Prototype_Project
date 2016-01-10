@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Menu</title>
+<link href="style_AOS.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!--
+#Author:Simmy Payyappilly Varghese
+#ID:86448
+#Created Date:12/24/2015
+-->
+<script  type="text/javascript">
+/* <![CDATA[ */;
+//create array that will hold all ordered products
+    var shoppingCart = [];
+    //this function manipulates DOM and displays content of our shopping cart
+    function displayShoppingCart(){
+
+	var x = document.getElementById("myframe").contentDocument;
+	
+       var orderedProductsTblBody=x.getElementById('orderedProductsTblBody');
+        //ensure we delete all previously added rows from ordered products table
+        while(orderedProductsTblBody.rows.length>0) {
+            orderedProductsTblBody.deleteRow(0);
+        }
+			
+        //variable to hold total price of shopping cart
+        var cart_total_price=0;
+        //iterate over array of objects
+			
+        for(var product in shoppingCart){
+            //add new row      
+            var row=orderedProductsTblBody.insertRow();
+            //create three cells for product properties 
+            var cellName = row.insertCell(0);
+            var cellPrice = row.insertCell(1);
+			var cellQuantity = row.insertCell(2);
+			
+            //fill cells with values from current product object of our array
+            cellName.innerHTML = "&nbsp;"+shoppingCart[product].Name+"&nbsp;&nbsp;";
+            cellPrice.innerHTML =shoppingCart[product].Price;
+			cellQuantity.innerHTML="&nbsp;"+shoppingCart[product].Quantity;
+			
+	  cart_total_price=cart_total_price+(shoppingCart[product].Price*shoppingCart[product].Quantity);
+        }
+        //fill total cost of our shopping cart 
+	  
+      x.getElementById("cart_total").innerHTML=cart_total_price;
+    }
+    function addtoList(name,quantity,price){
+	
+       //Below we create JavaScript Object that will hold three properties you have mentioned:    Name,Description and Price
+       var singleProduct = {};
+       //Fill the product object with data
+       singleProduct.Name=name;
+       singleProduct.Price=price;
+	   singleProduct.Quantity=quantity
+	   
+       //Add newly created product to our shopping cart 
+       shoppingCart.push(singleProduct);
+       //call display function to show on screen
+	   displayShoppingCart();
+    }  
+	
+	function removeFromList(name,quantity,price){
+	
+	for(singleProduct in shoppingCart){
+	 if(shoppingCart[singleProduct].Name==name && shoppingCart[singleProduct].Price==price && shoppingCart[singleProduct].Quantity==quantity){
+	shoppingCart.splice(singleProduct,1);
+	
+	}
+	displayShoppingCart();
+	}
+}
+
+/* ]]> */
+</script>
+</head>
+<body id="createOrderBody">
+<h1>BEETS</h1>
+	<iframe id="myframe" src="orderList.html" style="margin:0% 3% 0% 75%;display:none"></iframe>
+	<br/><br/>	
+	<input type="button" id="placeOrderButton" value="Place The Order" class="btn btn-primary" onclick="if(shoppingCart.length <= 0){ window.alert('Select atleast one item to place the order')}else {window.alert('Your Order is Placed');window.open('CustomerUI.html');}" style="margin:0% 3% 0% 80%;display:none"/>
+<div class="menu-description" style="margin:4% 1% 10% 10%;">
+<p>Select the items from the below menu and place your order:</p>
+	<table id="menuTable">
+	<tr><td></td><td></td><td>&nbsp;Quantity</td></tr>
+	<tr><td>
+		<dl><dt>The Canelloni  &nbsp; &dollar; 14.50</dt>
+		<dd>An egg noodle stuffed with beef,veal and chicken, baked with meat sauce and cream sauce</dd>
+		</dl>
+		</td><td>&nbsp;&nbsp;&nbsp;</td>
+		<td>1<input  type="radio" name="quantitySelect" id="radio_1" value="1" checked="checked"/> 2 <input type="radio" id="radio_2" name="quantitySelect" value="2"/> 3 <input type="radio" id="radio_3" name="quantitySelect" value="3"/>&nbsp;</td>
+		<td><input type="button" class="btn btn-primary" value="Add to List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';addtoList('The Canelloni',radio_1.checked?radio_1.value:radio_2.checked?radio_2.value:radio_3.value,14.50);"/></td><td>
+		<input type="button" class="btn btn-primary" value="Remove From List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';removeFromList('The Canelloni',radio_1.checked?radio_1.value:radio_2.checked?radio_2.value:radio_3.value,14.50);" /></td>
+		</tr>
+	<tr><td>
+		<dl><dt>Gabbriello Ravioli &nbsp; &dollar; 10.50</dt>
+		<dd>Handmade noodles stuffed with a blend of fresh beef and veal and prepared in our Famous meat sauce.</dd>
+		</dl></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>1 <input  type="radio" id="radio_4" name="quantitySelect_1" value="1" checked="checked"/> 2 <input type="radio" id="radio_5" name="quantitySelect_1" value="2"/> 3 <input type="radio" id="radio_6" name="quantitySelect_1" value="3"/>&nbsp;&nbsp;</td>
+		<td><input type="button" class="btn btn-primary" value="Add to List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';addtoList('Gabbriello Ravioli',radio_4.checked?radio_4.value:radio_5.checked?radio_5.value:radio_6.value,10.50);" />
+	&nbsp;</td><td><input type="button" class="btn btn-primary" value="Remove From List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';removeFromList('Gabbriello Ravioli',radio_4.checked?radio_4.value:radio_5.checked?radio_5.value:radio_6.value,10.50);" />
+	</td></tr>	
+	<tr><td>
+		<dl><dt>Manicootti Parmigiano &nbsp; &dollar; 10.50</dt>
+		<dd>An egg noodle stuffed with ricotta cheese, baked in tomato sauce and parmigiano cheese. </dd>
+		</dl></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>1 <input  type="radio" id="radio_7" name="quantitySelect_2" value="1" checked="checked"/> 2 <input type="radio" id="radio_8" name="quantitySelect_2" value="2"/> 3 <input type="radio" id="radio_9" name="quantitySelect_2" value="3"/></td>
+		<td><input type="button" class="btn btn-primary" value="Add to List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';addtoList('Manicootti Parmigiano',radio_7.checked?radio_7.value:radio_8.checked?radio_8.value:radio_9.value,10.50);" />
+	</td><td><input type="button" class="btn btn-primary" value="Remove From List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';removeFromList('Manicootti Parmigiano',radio_7.checked?radio_7.value:radio_8.checked?radio_8.value:radio_9.value,10.50);" />
+	</td></tr>
+    <tr><td>
+		<dl><dt>Venetian Kebabs &nbsp; &dollar; 15.50</dt>
+		<dd>Charcoal grilled Kebabs served over penne noodles in tomato sauce with sundried tomato pesto.</dd>
+		</dl></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>1 <input  type="radio" id="radio_10" name="quantitySelect_3" value="1" checked="checked"/> 2 <input type="radio" id="radio_11" name="quantitySelect_3" value="2"/> 3 <input type="radio" id="radio_12" name="quantitySelect_3" value="3"/></td>
+		<td><input type="button" class="btn btn-primary" value="Add to List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';addtoList('Venetian Kebabs',radio_10.checked?radio_10.value:radio_11.checked?radio_11.value:radio_12.value,15.50);" />
+	</td><td><input type="button" class="btn btn-primary" value="Remove From List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';removeFromList('Venetian Kebabs',radio_10.checked?radio_10.value:radio_11.checked?radio_11.value:radio_12.value,15.50);" />
+	</td></tr>
+    <tr><td>
+		<dl><dt>Linguine with Chicken Livers &nbsp; &dollar; 14.25</dt>
+		<dd>Lightly seasoned cream sauce, fresh mushrooms and chicken livers</dd>
+		</dl></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>1 <input  type="radio" id="radio_13" name="quantitySelect_4" value="1" checked="checked"/> 2 <input type="radio" id="radio_14" name="quantitySelect_4" value="2"/> 3 <input type="radio" id="radio_15" name="quantitySelect_4" value="3"/></td>
+		<td><input type="button" class="btn btn-primary" value="Add to List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';addtoList('Linguine with Chicken Livers',radio_13.checked?radio_13.value:radio_14.checked?radio_14.value:radio_15.value,14.25);" />
+	</td><td><input type="button" class="btn btn-primary" value="Remove From List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';removeFromList('Linguine with Chicken Livers',radio_13.checked?radio_13.value:radio_14.checked?radio_14.value:radio_15.value,14.25);" />
+	</td></tr>
+     <tr><td>
+		<dl><dt>Cavatelli Alla Crema &nbsp; &dollar; 10.50</dt>
+		<dd>Served with our Gabriello salad and fresh loaves of  Foccaccia bread.</dd>
+		</dl></td>
+		<td>&nbsp;&nbsp;&nbsp;</td>
+		<td>1 <input  type="radio" id="radio_16" name="quantitySelect_5" value="1" checked="checked"/> 2 <input type="radio" id="radio_17" name="quantitySelect_5" value="2"/> 3 <input type="radio" id="radio_18" name="quantitySelect_5" value="3"/></td>
+		<td><input type="button" class="btn btn-primary" value="Add to List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';addtoList('Cavatelli Alla Crema',radio_16.checked?radio_16.value:radio_17.checked?radio_17.value:radio_18.value,10.50);"/>
+	</td><td><input type="button" class="btn btn-primary" value="Remove From List" onclick="getElementById('myframe').style.display='block';getElementById('placeOrderButton').style.display='block';removeFromList('Cavatelli Alla Crema',radio_16.checked?radio_16.value:radio_17.checked?radio_17.value:radio_18.value,10.50);"/>
+	</td></tr>		
+	</table>	
+</div>
+</body>
+</html>
