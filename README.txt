@@ -7,6 +7,8 @@ For the correct execution,please keep the files in same folder.
 To execute the file:open the file in notepad/notepad++
 Click on Run as and select thr browser Firefox,IE,Chrome(Chrome doesnt support iframe tag file for local files ,so dont use it to run page CreateOrder.html)
 
+Refer the document AutmaticOrderSystem_Prototype_Documentation_SWE500_Fall15.docx
+For more detailed understanding of the prototype.
 
 Files in Folder are:
 
